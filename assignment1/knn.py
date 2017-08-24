@@ -39,12 +39,12 @@ class KNearestNeighbor(object):
 
     def predict(self, X, k=1):
         num_test = X.shape[0]
-        dist = np.zeros(num_test)
+        pred = np.zeros(num_test)
         for i in xrange(num_test):
             sum = np.sum(np.abs(self.train_data - X[i]), axis=1)
-            closest = self.train_labels[sum.argsort()[:k]]
-            dist[i] = np.argmax(np.bincount(closest))
-        return dist
+            k_closest = self.train_labels[sum.argsort()[:k]]
+            pred[i] = np.argmax(np.bincount(k_closest))
+        return pred
 
 
 if __name__ == '__main__':
