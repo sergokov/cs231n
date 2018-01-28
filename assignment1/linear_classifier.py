@@ -50,3 +50,12 @@ class LinearSVM(LinearClassifier):
       dW = dW / num_train + reg * self.W
 
       return loss, dW
+
+
+
+class Softmax(LinearClassifier):
+
+  def loass(self, X, y, reg):
+      num_train = X.shape[0]
+      num_classes = self.W.shape[1]
+      scores = X.dot(self.W)
